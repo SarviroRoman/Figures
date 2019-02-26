@@ -1,0 +1,174 @@
+<!-- Add a figures -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-circle-list" data-toggle="list" href="#list-circle" role="tab" aria-controls="circle">Circle</a>
+        <a class="list-group-item list-group-item-action" id="list-square-list" data-toggle="list" href="#list-square" role="tab" aria-controls="square">Square</a>
+        <a class="list-group-item list-group-item-action" id="list-rectangle-list" data-toggle="list" href="#list-rectangle" role="tab" aria-controls="rectangle">Rectangle</a>
+        <a class="list-group-item list-group-item-action" id="list-triangle-list" data-toggle="list" href="#list-triangle" role="tab" aria-controls="triangle">Triangle</a>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="nav-tabContent">
+
+        <div class="tab-pane fade show active" id="list-circle" role="tabpanel" aria-labelledby="list-circle-list">
+          
+          <form class="needs-validation" novalidate>
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="validationRadius">Radius:</label>
+                <input type="number" class="form-control" id="validationRadius" placeholder="100" value="10" min="1" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please enter a radius using only integers.
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Add a figure</button>
+          </form>
+
+        </div>
+
+        <div class="tab-pane fade" id="list-square" role="tabpanel" aria-labelledby="list-square-list">
+          <form class="needs-validation" novalidate>
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="validationLength">Side length:</label>
+                <input type="number" class="form-control" id="validationLength" placeholder="100" value="10" min="1" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please enter a length using only integers.
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Add a figure</button>
+          </form>
+        </div>
+          
+        <div class="tab-pane fade" id="list-rectangle" role="tabpanel" aria-labelledby="list-rectangle-list">
+          <form class="needs-validation" novalidate>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationX1">Coordinate Х1:</label>
+                  <input type="number" class="form-control" id="validationX1" placeholder="100" value="10" min="1" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Please enter a сoordinates using only integers.
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="validationY1">Coordinate Y1:</label>
+                    <input type="number" class="form-control" id="validationY1" placeholder="100" value="10" min="1" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                      Please enter a сoordinates using only integers.
+                    </div>
+                  </div>
+
+              </div>
+
+              <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label for="validationX2">Coordinate Х2:</label>
+                    <input type="number" class="form-control" id="validationX2" placeholder="100" value="10" min="1" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                      Please enter a сoordinates using only integers.
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                      <label for="validationY2">Coordinate Y2:</label>
+                      <input type="number" class="form-control" id="validationY2" placeholder="100" value="10" min="1" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please enter a сoordinates using only integers.
+                      </div>
+                    </div>
+
+                </div>
+              <button class="btn btn-primary" type="submit">Add a figure</button>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="list-triangle" role="tabpanel" aria-labelledby="list-triangle-list">
+            <form class="needs-validation" novalidate>
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label for="validationLength1">Side length 1:</label>
+                  <input type="number" class="form-control" id="validationLength1" placeholder="100" value="10" min="1" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Please enter a length using only integers.
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="validationLength2">Side length 2:</label>
+                    <input type="number" class="form-control" id="validationLength2" placeholder="100" value="10" min="1" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                      Please enter a length using only integers.
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mb-3">
+                      <label for="validationLength3">Side length 3:</label>
+                      <input type="number" class="form-control" id="validationLength3" placeholder="100" value="10" min="1" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please enter a length using only integers.
+                      </div>
+                    </div>
+
+              </div>
+
+              <button class="btn btn-primary" type="submit" (click)='chekInputs()'>Add a figure</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Переделать: Нужно переделать, чтобы работало! -->
+<!-- Example starter JavaScript for disabling form submissions if there are invalid fields -->
+<!-- chekInputs(): void {
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+}; -->
