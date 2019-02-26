@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  title:string = 'figures';
   
-  constructor() { }
+  // Переделать: Динамическая строка!
+  title : string = 'Navbar text with an inline element';
+
+  constructor() { 
+    
+  }
 
   ngOnInit() {
   }
