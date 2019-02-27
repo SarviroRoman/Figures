@@ -13,8 +13,8 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let figure of figures; index as i">
-        <th scope="row">{{ i + 1 }}</th>
+      <tr *ngFor="let figure of figures;">
+        <th scope="row">{{ figure.id }}</th>
         <td> {{ figure.type }} </td>
         <td> {{ figure.area | number }} </td>
         <td>
