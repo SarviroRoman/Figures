@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { AlertModule } from 'ngx-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HeaderComponent } from './header/header.component';
 import { FiguresComponent } from './figures/figures.component';
 import { AppRoutingModule } from './app-routing-module';
@@ -22,6 +24,8 @@ import { addFiguresComponent } from './addFigures/addFigures.component';
   imports: [
     BrowserModule,
     AlertModule.forRoot(),
+
+    NgbModule,
 
     AppRoutingModule,
   ],
