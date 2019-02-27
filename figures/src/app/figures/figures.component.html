@@ -1,21 +1,22 @@
  <!-- List added figures -->
 <div class="container text-center table-responsive">
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered table-hover table-striped">
     <caption>List added figures</caption>
-    <thead class="thead-light">
+
+    <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Type figures</th>
-        <th scope="col">Square</th>
+        <th scope="col">Area</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Circle</td>
-        <td>10</td>
+      <tr *ngFor="let figure of figures; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td> {{ figure.type }} </td>
+        <td> {{ figure.area | number }} </td>
         <td>
           <!-- Переделать: Тут должна быть кнопка, а не текст! -->
           <a href="" data-toggle="modal" data-target="#exampleModalCenter">del</a>
