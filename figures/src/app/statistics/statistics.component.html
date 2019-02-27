@@ -1,21 +1,22 @@
 <!-- Statistics of added figures -->
 
 <div class="container text-center">
-  <table class="table table-bordered table-hover">
+  <table class="table table-striped table-bordered table-hover">
     <caption>Statistics of added figures</caption>
-    <thead class="thead-light">
+
+    <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Type figures</th>
         <th scope="col">Percent of total area</th>
       </tr>
     </thead>
-
+    
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Circle</td>
-        <td>100</td>
+      <tr *ngFor="let figure of figures; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td> {{ figure.type }} </td>
+        <td> {{ figure.area | number }} </td>
       </tr>
     </tbody>
 
