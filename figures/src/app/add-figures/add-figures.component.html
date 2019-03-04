@@ -1,0 +1,165 @@
+<!-- Add a figures -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-circle-list" data-toggle="list" href="#list-circle" role="tab" aria-controls="circle">Circle</a>
+        <a class="list-group-item list-group-item-action" id="list-square-list" data-toggle="list" href="#list-square" role="tab" aria-controls="square">Square</a>
+        <a class="list-group-item list-group-item-action" id="list-rectangle-list" data-toggle="list" href="#list-rectangle" role="tab" aria-controls="rectangle">Rectangle</a>
+        <a class="list-group-item list-group-item-action" id="list-triangle-list" data-toggle="list" href="#list-triangle" role="tab" aria-controls="triangle">Triangle</a>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="nav-tabContent">
+
+        <div class="tab-pane fade show active" id="list-circle" role="tabpanel" aria-labelledby="list-circle-list">
+          
+          <form class="needs-validation" novalidate>
+                        
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="radius">Radius:</label>
+                <input class='form-control' type="number" id="radius" placeholder="100" required [formControl]='circleControl'>
+                
+                <div *ngIf="circleControl.invalid && (circleControl.dirty || circleControl.touched)" class="alert alert-danger">
+              
+                  <div *ngIf="circleControl.errors.required">
+                    Please enter a radius.
+                  </div>
+                  
+                  <div *ngIf="circleControl.errors.min">
+                    min = 1.
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <button *ngIf='circleControl.valid' class="btn btn-success" type="submit" (click)='addCircle(circleControl.value)'>Add a figure</button>
+          </form>
+
+        </div>
+
+        <div class="tab-pane fade" id="list-square" role="tabpanel" aria-labelledby="list-square-list">
+          <form class="needs-validation" novalidate>
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="length">Side length:</label>
+                <input class='form-control' type="number" id="length" placeholder="100" required [formControl]='squareControl'>
+                
+                <div *ngIf="squareControl.invalid && (squareControl.dirty || squareControl.touched)" class="alert alert-danger">
+              
+                  <div *ngIf="squareControl.errors.required">
+                    Please enter a length.
+                  </div>
+                  
+                  <div *ngIf="squareControl.errors.min">
+                    min = 1.
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <button *ngIf='squareControl.valid' class="btn btn-success" type="submit" (click)='addSquare(squareControl.value)'>Add a figure</button>
+          </form>
+
+        </div>
+          
+        <div class="tab-pane fade" id="list-rectangle" role="tabpanel" aria-labelledby="list-rectangle-list">
+          <form class="needs-validation" novalidate [formGroup]='rectangleControl'>
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="X1">Coordinate Х1:</label>
+                <input type="number" class="form-control" id="X1" placeholder="100" formControlName = 'X1' required>
+                <div *ngIf="rectangleControl.controls['X1'].invalid && (rectangleControl.controls['X1'].dirty || rectangleControl.controls['X1'].touched)" class="alert alert-danger">
+                  <div *ngIf="rectangleControl.controls['X1'].errors.required">
+                    Please enter a point.
+                  </div>
+                  <div *ngIf="rectangleControl.controls['X1'].errors.min">
+                    min = 1.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="Y1">Coordinate Y1:</label>
+                  <input type="number" class="form-control" id="Y1" placeholder="100" formControlName = 'Y1' required>
+                  <div *ngIf="rectangleControl.controls['Y1'].invalid && (rectangleControl.controls['Y1'].dirty || rectangleControl.controls['Y1'].touched)" class="alert alert-danger">
+                    <div *ngIf="rectangleControl.controls['Y1'].errors.required">
+                      Please enter a point.
+                    </div>
+                    <div *ngIf="rectangleControl.controls['Y1'].errors.min">
+                      min = 1.
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="X2">Coordinate Х2:</label>
+                <input type="number" class="form-control" id="X2" placeholder="100" formControlName = 'X2' required>
+                <div *ngIf="rectangleControl.controls['X2'].invalid && (rectangleControl.controls['X2'].dirty || rectangleControl.controls['X2'].touched)" class="alert alert-danger">
+                  <div *ngIf="rectangleControl.controls['X2'].errors.required">
+                    Please enter a point.
+                  </div>
+                  <div *ngIf="rectangleControl.controls['X2'].errors.min">
+                    min = 1.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="Y2">Coordinate Y2:</label>
+                  <input type="number" class="form-control" id="Y2" placeholder="100" formControlName = 'Y2' required>
+                  <div *ngIf="rectangleControl.controls['Y2'].invalid && (rectangleControl.controls['Y2'].dirty || rectangleControl.controls['Y2'].touched)" class="alert alert-danger">
+                    <div *ngIf="rectangleControl.controls['Y2'].errors.required">
+                      Please enter a point.
+                    </div>
+                    <div *ngIf="rectangleControl.controls['Y2'].errors.min">
+                      min = 1.
+                    </div>   
+                  </div> 
+              </div>
+            </div>
+              <!-- asd -->
+              <button *ngIf='rectangleControl.valid' class="btn btn-success" type="submit" (click)='addRectangle(rectangleControl.value)'>Add a figure</button>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="list-triangle" role="tabpanel" aria-labelledby="list-triangle-list">
+          <form class="needs-validation" novalidate [formGroup]='triangleControl' (ngSubmit)="addTriangle(triangleControl.value)">
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="a">Side length 1:</label>
+                <input type="number" class="form-control" id="a" placeholder="100" required formControlName = 'a'>
+                <div *ngIf="triangleControl.errors?.identityRevealed && (triangleControl.touched || triangleControl.dirty)" class="cross-validation-error-message alert alert-danger">
+                  Error
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="b">Side length 2:</label>
+                <input type="number" class="form-control" id="b" placeholder="100" required formControlName = 'b'>
+                <div *ngIf="triangleControl.errors?.identityRevealed && (triangleControl.touched || triangleControl.dirty)" class="cross-validation-error-message alert alert-danger">
+                  Error
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="c">Side length 3:</label>
+                <input type="number" class="form-control" id="c" placeholder="100" required formControlName = 'c'>
+                <div *ngIf="triangleControl.errors?.identityRevealed && (triangleControl.touched || triangleControl.dirty)" class="cross-validation-error-message alert alert-danger">
+                  Error
+                </div>                
+              </div>
+
+            </div>
+
+            <button [disabled]="triangleControl.invalid" class="btn btn-success" type="submit">Add a figure</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

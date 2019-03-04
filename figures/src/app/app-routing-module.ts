@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { FiguresComponent } from './figures/figures.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { addFiguresComponent } from './addFigures/addFigures.component';
+import { AddFiguresComponent } from './add-figures/add-figures.component';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { addFiguresComponent } from './addFigures/addFigures.component';
       }, 
       {
         path: 'addFigures',
-        component: addFiguresComponent
+        component: AddFiguresComponent
       },
       {
         path: '**',
