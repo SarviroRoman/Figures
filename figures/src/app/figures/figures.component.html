@@ -19,7 +19,8 @@
         <td> {{ figure.area | number }} </td>
         <td>
           <!-- Переделать: Тут должна быть кнопка, а не текст! -->
-          <a href="" data-toggle="modal" data-target="#exampleModalCenter">del</a>
+          <button type="button" class="btn btn-outline-danger btn-sm" title="delete figure" (click)='delete(figure)'>del</button>
+          <!-- <a href="" data-toggle="modal" data-target="#exampleModalCenter">del</a> -->
         </td>
       </tr>
     </tbody>

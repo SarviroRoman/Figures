@@ -9,6 +9,6 @@ import { FIGURES } from '../mock-figures';
 
 export class StatisticsComponent {
 
-  figures = FIGURES;
+  public figures = FIGURES;
 
 }

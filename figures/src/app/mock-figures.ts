@@ -1,4 +1,4 @@
-import { Figure } from './figure';
+import { Figure } from './models/figure';
 
 export const FIGURES: Figure[] = [
   {
