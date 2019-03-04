@@ -14,31 +14,7 @@
       <div class="tab-content" id="nav-tabContent">
 
         <div class="tab-pane fade show active" id="list-circle" role="tabpanel" aria-labelledby="list-circle-list">
-          
-          <form class="needs-validation" novalidate>
-                        
-            <div class="form-row">
-              <div class="col-md-3 mb-3">
-                <label for="radius">Radius:</label>
-                <input class='form-control' type="number" id="radius" placeholder="100" required [formControl]='circleControl'>
-                
-                <div *ngIf="circleControl.invalid && (circleControl.dirty || circleControl.touched)" class="alert alert-danger">
-              
-                  <div *ngIf="circleControl.errors.required">
-                    Please enter a radius.
-                  </div>
-                  
-                  <div *ngIf="circleControl.errors.min">
-                    min = 1.
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-            <button *ngIf='circleControl.valid' class="btn btn-success" type="submit" (click)='addCircle(circleControl.value)'>Add a figure</button>
-          </form>
-
+          <app-circle></app-circle>
         </div>
 
         <div class="tab-pane fade" id="list-square" role="tabpanel" aria-labelledby="list-square-list">

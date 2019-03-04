@@ -15,6 +15,7 @@ import { FiguresComponent } from './figures/figures.component';
 import { AppRoutingModule } from './app-routing-module';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AddFiguresComponent } from './add-figures/add-figures.component';
+import { CircleComponent } from './circle/circle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FiguresComponent,
     StatisticsComponent,
-    AddFiguresComponent
+    AddFiguresComponent,
+    CircleComponent,
   ],
   imports: [
     BrowserModule,
