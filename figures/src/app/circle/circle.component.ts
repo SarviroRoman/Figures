@@ -45,6 +45,6 @@ export class CircleComponent{
       if(circleControl.value > 0){
         return null;
       }
-      return { radiusValidator: {message: 'Incorrect radius'} };
+      return { radiusValidator: {message: 'Radius must be greater than 0.'} };
     }
 }
