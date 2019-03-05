@@ -8,25 +8,27 @@
 
       <div class="form-row">
         <div class="col-md-6 mb-6">
-          <h4>
-            Formula: 
-            <code>S=πR²</code>
-          </h4>      
+            
           <label for="radius">Radius:</label>
           <input class='form-control' type="number" id="radius" placeholder="100" required [formControl]='circleControl'>
           
           <div *ngIf="circleControl.invalid" class="alert alert-danger">
             {{circleControl.errors.radiusValidator.message}}
           </div>
+
+          <button id='btn-add-circle' class="btn btn-success" type="submit" (click)='addCircle()' [disabled]="circleControl.invalid">Add a new circle</button>
         </div>
 
         <div class="col-md-6 mb-6 text-center text-center">
-          <img id='circle-img' src="../../assets/Images/circle.png" alt="circle" height="100"> 
+          <h4>
+            Formula: 
+            <code>S=πR²</code>
+          </h4>    
+          <img src="../../assets/Images/circle.png" alt="circle" height="100"> 
         </div>
 
       </div>
 
-      <button class="btn btn-success" type="submit" (click)='addCircle(circleControl.value)' [disabled]="circleControl.invalid">Add a new circle</button>
     </div>
   </div>
 </form>
