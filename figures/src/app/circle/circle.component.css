@@ -6,6 +6,14 @@
   border-left: 5px solid #a94442; /* red */
 }
 
-#btn-add-circle{
+#btn-add{
   margin-top: 15px;
+}
+
+.alert-danger{
+  margin: 0 auto;
+}
+
+#form-content{
+  margin: 25px;
 }

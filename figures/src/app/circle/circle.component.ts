@@ -45,6 +45,6 @@ export class CircleComponent{
       if(circleControl.value > 0){
         return null;
       }
-      return { radiusValidator: {message: 'Radius must be greater than 0.'} };
+      return { radiusValidator: {message: 'No, well, of course I can square it and get a square, but where have you seen it so long?'} };
     }
 }
