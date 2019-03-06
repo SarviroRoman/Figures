@@ -17,6 +17,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AddFiguresComponent } from './add-figures/add-figures.component';
 import { CircleComponent } from './circle/circle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SquareComponent } from './square/square.component';
+import { RectangleComponent } from './rectangle/rectangle.component';
+import { TriangleComponent } from './triangle/triangle.component';
 
 
 
@@ -28,6 +31,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StatisticsComponent,
     AddFiguresComponent,
     CircleComponent,
+    SquareComponent,
+    RectangleComponent,
+    TriangleComponent,
   ],
   imports: [
     BrowserModule,
