@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  
-  // Переделать: Динамическая строка!
-  public title : string = 'Navbar text with an inline element';
-
+  active: string = 'List';
+  checkActive(active: string): void{
+    this.active = active;
+  }
 }
