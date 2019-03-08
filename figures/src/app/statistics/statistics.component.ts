@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FIGURES } from '../mock-figures';
-
 
 @Component({
   selector: 'app-statistics',
@@ -8,7 +6,5 @@ import { FIGURES } from '../mock-figures';
 })
 
 export class StatisticsComponent {
-
-  public figures = FIGURES;
 
 }

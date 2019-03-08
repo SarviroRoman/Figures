@@ -7,8 +7,6 @@ import { AlertModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule }    from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './services/in-memory-data.service';
 
 import { HeaderComponent } from './header/header.component';
 import { FiguresComponent } from './figures/figures.component';
@@ -41,15 +39,7 @@ import { TriangleComponent } from './triangle/triangle.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-
     HttpClientModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-
     AppRoutingModule,
   ],
   providers: [],

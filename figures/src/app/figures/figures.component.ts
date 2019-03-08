@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { Figure } from '../models/figure'
 import { FigureService } from '../services/figure.service';
-import { FIGURES } from '../mock-figures';
 
 @Component({
   selector: 'app-figures',
