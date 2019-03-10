@@ -1,43 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 import { Figure } from '../models/figure';
+import { APP } from '../application-constants';
+import { ResponseMessage } from '../models/response-message.mode';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
- 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FigureService {
 
-  private figuresUrl = 'api/figures';  // URL to web api
-
   constructor(
     private http: HttpClient
   ) {}
 
-  /** GET figures from the server */
   getFigures (): Observable<Figure[]> {
-    return this.http.get<Figure[]>(this.figuresUrl)
+    return this.http.get<Figure[]>(`${APP.endpoints.baseUrl}${APP.endpoints.figures}`);
   }
 
-  /** POST: add a new figure to the server */
-  addFigure (figure: Figure): Observable<Figure> {
-    return this.http.post<Figure>(this.figuresUrl, figure);
-  }
+  // addFigure (figure: Figure): Observable<Figure> {
+  //   return this.http.post<Figure>(this.figuresUrl, figure);
+  // }
 
-   /** DELETE: delete the figure from the server */
-   deleteFigure (figure: Figure | number): Observable<Figure> {
-    const id = typeof figure === 'number' ? figure : figure.id;
-    const url = `${this.figuresUrl}/${id}`;
-
-    return this.http.delete<Figure>(url, httpOptions).pipe();
-
+   deleteFigure (figureId: number): Observable<ResponseMessage> {
+    return this.http.delete<ResponseMessage>(`${APP.endpoints.baseUrl}${APP.endpoints.figures}?id=${figureId}`);
   }
 
 }
