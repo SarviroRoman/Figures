@@ -7,7 +7,7 @@ app.use(cors({
   credentials: true,
 }))
 
-const figures = [
+let figures = [
   {
     id: 1,
     type: 'Circle',
@@ -35,6 +35,12 @@ app.get('/figures', (request, response) => {
     response.send(figures);
   }, 500);
 });
+
+app.delete('/figures', (request, response) => {
+  const {id} = request.query;
+  figures = figures.filter(figures => figures.id !== Number(id));
+  response.send({success: true});
+})
 
 app.listen(3000, () => {
   console.log('application works on the port 3000');
