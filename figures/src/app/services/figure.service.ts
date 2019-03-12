@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Figure } from '../models/figure';
 import { APP } from '../application-constants';
@@ -17,15 +17,15 @@ export class FigureService {
     private http: HttpClient
   ) {}
 
-  getFigures (): Observable<Figure[]> {
+  public getFigures(): Observable<Figure[]> {
     return this.http.get<Figure[]>(`${APP.endpoints.baseUrl}${APP.endpoints.figures}`);
   }
 
-  // addFigure (figure: Figure): Observable<Figure> {
-  //   return this.http.post<Figure>(this.figuresUrl, figure);
-  // }
+  public addFigure(figure: Figure): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(`${APP.endpoints.baseUrl}${APP.endpoints.figures}`, figure);
+  }
 
-   deleteFigure (figureId: number): Observable<ResponseMessage> {
+  public deleteFigure(figureId: number): Observable<ResponseMessage> {
     return this.http.delete<ResponseMessage>(`${APP.endpoints.baseUrl}${APP.endpoints.figures}?id=${figureId}`);
   }
 
