@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { FormControl } from '@angular/forms';
 
-import { Figure } from '../models/figure';
 import { FigureService } from '../services/figure.service';
+import { APP } from '../application-constants';
 
 @Component({
   selector: 'app-square',
@@ -11,35 +11,42 @@ import { FigureService } from '../services/figure.service';
 })
 
 export class SquareComponent{
-  public figures: Figure[];
+
   private squareControl : FormControl;
+  public responseIsSuccess: boolean = false; 
+  public showAlertMessage: boolean = false;
+  public alertMessage: string;
 
   constructor (
     private figureService: FigureService
   ) {}
 
   ngOnInit() {
-    this.getFigures();
     this.squareControl = new FormControl(10, [this.lengthValidator]);
   }
 
-  private getFigures(): void {
-    this.figureService.getFigures().subscribe(figures => this.figures = figures);
+  private addSquare(): void {  
+    this.responseIsSuccess = true;
+    setTimeout( () => {
+      const area = this.getSquareArea();
+
+      this.figureService.addFigure(
+      {
+        type: APP.types.square, 
+        area
+      })
+        .subscribe( response => {
+          if(response.success){
+            this.responseIsSuccess = false;
+            this.showAlertMessage = true;
+            this.alertMessage = `Square #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
+          }
+        } );
+    }, 500)
   }
 
-  private add(type: string, area: number): void {  
-    if (!type) { return; }
-    if (!area) { return; }
-    
-    this.figureService.addFigure({ type, area } as Figure)
-      .subscribe(figure => this.figures.push(figure));
-  }
-
-  public addSquare(l: number): void {
-    const type = 'Square';
-    const area = Math.pow(l,2);
-
-    this.add(type, area);
+  public getSquareArea(): number {
+    return Math.pow(this.squareControl.value,2);
   }
 
   private lengthValidator(squareControl: FormControl){

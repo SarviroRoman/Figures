@@ -15,7 +15,10 @@
             {{squareControl.errors.lengthValidator.message}}
           </div>
 
-          <button id='btn-add' class="btn btn-primary" type="submit" (click)='addSquare(squareControl.value)' [disabled]="squareControl.invalid">Add a new square</button>
+          <button id='btn-add' class="btn btn-primary" type="submit" (click)='addSquare()' [disabled]="squareControl.invalid || responseIsSuccess">
+            Add a new square
+            <span *ngIf='responseIsSuccess' class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
         </div>
         <div class="col-md-6 mb-6 text-center">
           <h4>
@@ -30,3 +33,7 @@
     </div>
   </div>
 </form>
+
+<ngb-alert *ngIf='showAlertMessage' type='info' (close)="showAlertMessage = false" class="container alertDeleteSuccess text-center">
+    {{ alertMessage }}
+</ngb-alert>
