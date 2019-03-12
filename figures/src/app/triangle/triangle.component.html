@@ -26,7 +26,10 @@
             {{triangleControl.errors.triangleValidator.message}}
           </div>  
 
-          <button id='btn-add' class="btn btn-primary" type="submit" [disabled]="triangleControl.invalid" (click)="addTriangle(triangleControl.value)">Add a figure</button>
+          <button id='btn-add' class="btn btn-primary" type="submit" [disabled]="triangleControl.invalid || responseIsSuccess" (click)="addTriangle()">
+            Add a figure
+            <span *ngIf='responseIsSuccess' class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
 
         </div>
 
@@ -44,3 +47,7 @@
   </div>
 
 </form>
+
+<ngb-alert *ngIf='showAlertMessage' type='info' (close)="showAlertMessage = false" class="container alertDeleteSuccess text-center">
+    {{ alertMessage }}
+</ngb-alert>
