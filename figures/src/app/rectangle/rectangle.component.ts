@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Figure } from '../models/figure';
 import { FigureService } from '../services/figure.service';
+import { APP } from '../application-constants';
 
 @Component({
   selector: 'app-rectangle',
@@ -12,16 +12,16 @@ import { FigureService } from '../services/figure.service';
 
 export class RectangleComponent{
   
-  public figures: Figure[];
   private rectangleControl : FormGroup;
+  public responseIsSuccess: boolean = false; 
+  public showAlertMessage: boolean = false;
+  public alertMessage: string;
 
   constructor (
     private figureService: FigureService
   ) {}
 
   ngOnInit() {
-    this.getFigures();
-
     this.rectangleControl = new FormGroup({
       X1: new FormControl(10, [Validators.required]),
       Y1: new FormControl(10, [Validators.required]),
@@ -30,32 +30,40 @@ export class RectangleComponent{
     });
   }
 
-  private getFigures(): void {
-    this.figureService.getFigures().subscribe(figures => this.figures = figures);
-  }
 
-  private add(type: string, area: number): void {
-    type = type.trim();
-
-    if (!type) { return; }
-    if (!area) { return; }
+  private addRectangle(): void {
     
-    this.figureService.addFigure({ type, area } as Figure)
-      .subscribe(figure => this.figures.push(figure));
+    this.responseIsSuccess = true;
+    setTimeout( () => {
+      const area = this.getRectangleArea();
+
+      this.figureService.addFigure(
+      {
+        type: APP.types.rectangle, 
+        area
+      })
+        .subscribe( response => {
+          if(response.success){
+            this.responseIsSuccess = false;
+            this.showAlertMessage = true;
+            this.alertMessage = `Rectangle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
+          }
+        } );
+    }, 500)
   }
 
-  public addRectangle(points : object): void {
+  public getRectangleArea(): number {
+    const points = this.rectangleControl.value;
+
     const x1 = points['X1'];
     const y1 = points['Y1'];
     const x2 = points['X2'];
     const y2 = points['Y2'];
-    
-    const type = 'Rectangle';
+
     const a = x2-x1;
     const b = y2-y1;
-    const area = Math.abs(a*b);
 
-    this.add(type, area);
+    return Math.abs(a*b);
   }
 
 }

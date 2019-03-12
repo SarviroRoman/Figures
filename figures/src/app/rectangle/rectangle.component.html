@@ -39,7 +39,10 @@
               </div>
             </div>
         </div>
-        <button id='btn-add' class="btn btn-primary" type="submit" (click)='addRectangle(rectangleControl.value)' [disabled]="rectangleControl.invalid">Add a new rectangle</button>
+        <button id='btn-add' class="btn btn-primary" type="submit" (click)='addRectangle()' [disabled]="rectangleControl.invalid || responseIsSuccess">
+          Add a new rectangle
+          <span *ngIf='responseIsSuccess' class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
       </div>
   
         <div class="col-md-6 mb-6 text-center">
@@ -62,3 +65,7 @@
     </div>
   </div>
 </form>
+
+<ngb-alert *ngIf='showAlertMessage' type='info' (close)="showAlertMessage = false" class="container alertDeleteSuccess text-center">
+    {{ alertMessage }}
+</ngb-alert>
