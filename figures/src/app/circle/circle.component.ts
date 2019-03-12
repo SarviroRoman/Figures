@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl} from '@angular/forms';
 
-import { Figure } from '../models/figure';
-import { FormControl, Validators, FormGroup, ValidatorFn, ValidationErrors} from '@angular/forms';
 import { FigureService } from '../services/figure.service';
+import { APP } from '../application-constants';
 
 @Component ({
   selector: 'app-circle',
@@ -11,40 +11,53 @@ import { FigureService } from '../services/figure.service';
 })
 
 export class CircleComponent{
-  public figures: Figure[];
-  private circleControl : FormControl;
+
+  private circleControl: FormControl;
+  public responseIsSuccess: boolean = false; 
+  public showAlertMessage: boolean = false;
+  public alertMessage: string;
 
   constructor (
     private figureService: FigureService
   ) {}
 
   ngOnInit() {
-    this.getFigures();
     this.circleControl = new FormControl(10, [this.radiusValidator]);
   }
-    private getFigures(): void {
-      this.figureService.getFigures().subscribe(figures => this.figures = figures);
-    }
   
-    private add(type: string, area: number): void {  
-      if (!type) { return; }
-      if (!area) { return; }
-      
-      this.figureService.addFigure({ type, area } as Figure)
-        .subscribe(figure => this.figures.push(figure));
-    }
-  
-    public addCircle(r: number): void {
-      const type = 'Circle';
-      const area = Math.pow(r,2) * Math.PI;
-  
-      this.add(type, area);
-    }
 
-    private radiusValidator(circleControl: FormControl){
-      if(circleControl.value > 0){
-        return null;
-      }
-      return { radiusValidator: {message: 'No, well, of course I can square it and get a square, but where have you seen it so long?'} };
+  private getCircleArea(): number {
+    return Math.pow(this.circleControl.value,2) * Math.PI;
+  }
+  
+
+  public addCircle(): void {
+    this.responseIsSuccess = true;
+    setTimeout( () => {
+      const area = this.getCircleArea();
+
+      this.figureService.addFigure(
+      {
+        type: APP.types.circle, 
+        area
+      })
+        .subscribe( response => {
+          if(response.success){
+            this.responseIsSuccess = false;
+            this.showAlertMessage = true;
+            this.alertMessage = `Circle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
+          }
+        } );
+    }, 500)
+    
+  
+  }
+
+  private radiusValidator(circleControl: FormControl){
+    if(circleControl.value > 0){
+      return null;
     }
+    return { radiusValidator: {message: 'No, well, of course I can square it and get a square, but where have you seen it so long?'} };
+  }
+
 }
