@@ -50,7 +50,6 @@ export class FiguresComponent {
             this.showDeleteSpinner = false;
             this.alertMessage = `${id}`;
             this.showAlertMessage = true;
-            setTimeout(() => this.showAlertMessage = false, 3000);
           }
         });
     }, 1500);
