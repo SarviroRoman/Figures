@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
-
 import { Figure } from '../models/figure'
 import { FigureService } from '../services/figure.service';
 
@@ -33,7 +31,6 @@ export class FiguresComponent {
         this.figures = figures.sort((first,second) => first.area-second.area);
         this.showSpinner = false;
       });
-
   }
   
   public delete(id: number): void {
