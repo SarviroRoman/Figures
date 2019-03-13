@@ -39,20 +39,20 @@ export class FiguresComponent {
   public delete(id: number): void {
     this.showDeleteSpinner = true;
 
-    setTimeout( () =>{
-      this.figureService.deleteFigure(id)
-        .subscribe( response => {
-          if(response.success){
-            const index = this.figures.findIndex(figure => figure.id === id);
+    this.figureService.deleteFigure(id)
+      .subscribe( response => {
+        if(response.success){
+          const index = this.figures.findIndex(figure => figure.id === id);
 
-            this.figures.splice(index,1);
-            
-            this.showDeleteSpinner = false;
-            this.alertMessage = `${id}`;
-            this.showAlertMessage = true;
-          }
-        });
-    }, 1500);
+          this.figures.splice(index,1);
+          
+          this.showDeleteSpinner = false;
+          this.alertMessage = `${id}`;
+          this.showAlertMessage = true;
+        }
+      });
+    
+    
 
   }
 

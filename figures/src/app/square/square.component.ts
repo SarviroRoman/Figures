@@ -27,22 +27,20 @@ export class SquareComponent{
 
   private addSquare(): void {  
     this.responseIsSuccess = true;
-    setTimeout( () => {
-      const area = this.getSquareArea();
+    const area = this.getSquareArea();
 
-      this.figureService.addFigure(
-      {
-        type: APP.types.square, 
-        area
-      })
-        .subscribe( response => {
-          if(response.success){
-            this.responseIsSuccess = false;
-            this.showAlertMessage = true;
-            this.alertMessage = `Square #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
-          }
-        } );
-    }, 500)
+    this.figureService.addFigure(
+    {
+      type: APP.types.square, 
+      area
+    })
+      .subscribe( response => {
+        if(response.success){
+          this.responseIsSuccess = false;
+          this.showAlertMessage = true;
+          this.alertMessage = `Square #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
+        }
+      });
   }
 
   public getSquareArea(): number {

@@ -30,22 +30,19 @@ export class TriangleComponent{
 
   private addTriangle(): void {
     this.responseIsSuccess = true;
-    setTimeout( () => {
-      const area = this.getTriangleArea();
+    const area = this.getTriangleArea();
 
-      this.figureService.addFigure(
-      {
-        type: APP.types.triangle, 
-        area
-      })
-        .subscribe( response => {
-          if(response.success){
-            this.responseIsSuccess = false;
-            this.showAlertMessage = true;
-            this.alertMessage = `Triangle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
-          }
-        } );
-    }, 500)
+    this.figureService.addFigure({
+      type: APP.types.triangle, 
+      area
+    })
+     .subscribe( response => {
+      if(response.success){
+        this.responseIsSuccess = false;
+        this.showAlertMessage = true;
+        this.alertMessage = `Triangle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
+      }
+    });
     
   }
 

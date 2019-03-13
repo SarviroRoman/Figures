@@ -46,7 +46,10 @@ app.get('/figures', (request, response) => {
 app.delete('/figures', (request, response) => {
   const {id} = request.query;
   figures = figures.filter(figures => figures.id !== Number(id));
-  response.send({success: true});
+  setTimeout( () =>{
+    response.send({success: true});
+  }, 500);
+
 })
 
 app.post('/figures', (request, response) => {
@@ -63,6 +66,12 @@ app.post('/figures', (request, response) => {
     area
   });
 
-  response.send({success: true, 'id': newId});
+  setTimeout( () =>{
+    response.send({success: true, 'id': newId});
+  }, 500);
+
 });
 
+app.listen(3000, () => { 
+  console.log('Application works on the port 3000'); 
+  });

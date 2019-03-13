@@ -33,24 +33,21 @@ export class CircleComponent{
 
   public addCircle(): void {
     this.responseIsSuccess = true;
-    setTimeout( () => {
-      const area = this.getCircleArea();
+    const area = this.getCircleArea();
 
-      this.figureService.addFigure(
-      {
-        type: APP.types.circle, 
-        area
-      })
-        .subscribe( response => {
-          if(response.success){
-            this.responseIsSuccess = false;
-            this.showAlertMessage = true;
-            this.alertMessage = `Circle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
-          }
-        } );
-    }, 500)
+    this.figureService.addFigure(
+    {
+      type: APP.types.circle, 
+      area
+    })
+      .subscribe( response => {
+        if(response.success){
+          this.responseIsSuccess = false;
+          this.showAlertMessage = true;
+          this.alertMessage = `Circle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
+        }
+      });
     
-  
   }
 
   private radiusValidator(circleControl: FormControl){
