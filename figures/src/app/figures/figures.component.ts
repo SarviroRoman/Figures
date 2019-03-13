@@ -17,6 +17,11 @@ export class FiguresComponent {
   public showAlertMessage: boolean = false;
   public alertMessage: string;
 
+  public page: number = 1;
+  public pageSize: number = 6;
+  public maxSize: number = 7;
+  public collectionSize: number;
+
   constructor (
     private figureService: FigureService
   ) {}
@@ -30,6 +35,7 @@ export class FiguresComponent {
       .subscribe(figures => {
         this.figures = figures.sort((first,second) => first.area-second.area);
         this.showSpinner = false;
+        this.collectionSize = this.figures.length;
       });
   }
   

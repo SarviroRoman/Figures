@@ -22,7 +22,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let figure of figures;">
+      <tr *ngFor="let figure of figures | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
         <th scope="row">{{ figure.id }}</th>
         <td> {{ figure.type }} </td>
         <td> {{ figure.area | number }} </td>
@@ -36,4 +36,18 @@
     </tbody>
 
   </table>
+
+  <div class="container d-flex justify-content-center">
+    <ngb-pagination
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [maxSize]="maxSize" 
+      [rotate]="true" 
+      [boundaryLinks]="true"
+      [collectionSize]="collectionSize">
+    </ngb-pagination>
+  </div>
+
 </div>
+
+
