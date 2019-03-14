@@ -4,6 +4,12 @@
   position: fixed;
 }
 
-.statistic-table{
+.statistic{
   margin-top: 35px;
+}
+
+.text-progressbar{
+  margin: 0 auto;
+  padding: 0;
+  font-size: 17px;
 }

@@ -12,7 +12,7 @@ import { FigureService } from '../services/figure.service';
 export class StatisticsComponent {
   public showSpinner: boolean = true;
   public figures: Figure[];
-  public statistic: Figure[];
+  public statistic: {}[];
 
   constructor (
     private figureService: FigureService
@@ -69,19 +69,23 @@ export class StatisticsComponent {
     this.statistic = [
       {
         type: 'Circle',
-        area: Math.round(circlePercent * 1000) / 1000 
+        area: circlesArea,
+        percent: Math.round(circlePercent * 1000) / 1000 
       },
       {
         type: 'Square',
-        area: Math.round(squarePercent * 1000) / 1000 
+        area: squaresArea,
+        percent: Math.round(squarePercent * 1000) / 1000 
       },
       {
         type: 'Rectangle',
-        area: Math.round(rectanglePercent * 1000) / 1000 
+        area: rectanglesArea,
+        percent:  Math.round(rectanglePercent * 1000) / 1000  
       },
       {
         type: 'Triangle',
-        area: Math.round(trianglePercent * 1000) / 1000 
+        area: trianglesArea,
+        percent:  Math.round(trianglePercent * 1000) / 1000 
       },
     ]
 
@@ -89,5 +93,24 @@ export class StatisticsComponent {
 
   }
 
+  public checkType(type: string){
+    switch (type) {
+      case 'Circle':
+        return 'warning';
+
+      case 'Square':
+        return 'danger';
+
+      case 'Rectangle':
+        return 'primary';
+
+      case 'Triangle':
+        return 'success'; 
+
+      default:
+        return 'secondary';
+    }
+
+  }
 
 }
