@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Figure } from '../models/figure'
 import { FigureService } from '../services/figure.service';
 
@@ -12,6 +14,7 @@ import { FigureService } from '../services/figure.service';
 export class FiguresComponent {
   
   public figures: Figure[];
+  private figuresId: number;
   public showSpinner: boolean = true;
   public showDeleteSpinner: boolean = false;
   public showAlertMessage: boolean = false;
@@ -23,8 +26,14 @@ export class FiguresComponent {
   public collectionSize: number;
 
   constructor (
-    private figureService: FigureService
+    private figureService: FigureService,
+    private modalService: NgbModal, 
   ) {}
+
+  open(content, id) {
+    this.modalService.open(content);
+    this.figuresId = id;
+  }
 
   ngOnInit() {
     this.getFigures();
@@ -39,7 +48,9 @@ export class FiguresComponent {
       });
   }
   
-  public delete(id: number): void {
+  public deleteFigures(): void {
+    const id = this.figuresId;
+    console.log(id);
     this.showDeleteSpinner = true;
 
     this.figureService.deleteFigure(id)
@@ -50,6 +61,8 @@ export class FiguresComponent {
           this.figures.splice(index,1);
           
           this.showDeleteSpinner = false;
+          this.modalService.dismissAll();
+
           this.alertMessage = `${id}`;
           this.showAlertMessage = true;
         }
