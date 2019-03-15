@@ -27,7 +27,7 @@
   </table>
 
   <div *ngFor='let item of statistic'>
-    <p><ngb-progressbar [type]="checkType(item.type)" [value]="item.area" [striped]="true" [animated]="true" height="35px"><p class="text-progressbar">{{item.type}}: {{item.percent}}%</p></ngb-progressbar></p>
+    <p><ngb-progressbar [type]="checkType(item.type)" [value]="item.percent" [striped]="true" [animated]="true" height="35px"><p class="text-progressbar">{{item.type}}: {{item.percent}}%</p></ngb-progressbar></p>
   </div>
 
 </div>
