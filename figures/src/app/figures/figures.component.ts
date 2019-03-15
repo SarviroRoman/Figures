@@ -21,8 +21,8 @@ export class FiguresComponent {
   public alertMessage: string;
 
   public page: number = 1;
-  public pageSize: number = 6;
-  public maxSize: number = 7;
+  public pageSize: number = 5;
+  public maxSize: number = 5;
   public collectionSize: number;
 
   constructor (
