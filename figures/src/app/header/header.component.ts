@@ -5,9 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  active: string = 'List';
-  checkActive(active: string): void{
-    this.active = active;
-  }
-}
+export class HeaderComponent {}
