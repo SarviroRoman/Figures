@@ -51,7 +51,7 @@ export class TriangleComponent{
     if(control.value > 0){
       return null;
     }
-    return { radiusValidator: {message: 'Where did you see the negative side length of the triangle?'} };
+    return { lengthValidator: {message: 'Where did you see the negative side length of the triangle?'} };
   }
 
   triangleValidator: ValidatorFn = (triangleControl: FormGroup): ValidationErrors | null => {
