@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output, Input } from "@angular/core";
 import { FormControl } from '@angular/forms';
 
 import { FigureService } from '../services/figure.service';
 import { APP } from '../application-constants';
+import { Figure } from '../models/figure';
 
 @Component({
   selector: 'app-square',
@@ -12,35 +13,22 @@ import { APP } from '../application-constants';
 
 export class SquareComponent{
 
-  private squareControl : FormControl;
-  public responseIsSuccess: boolean = false; 
-  public showAlertMessage: boolean = false;
-  public alertMessage: string;
+  @Output() addFigureEvent = new EventEmitter<Figure>();
+  @Input() responseIsSuccess: boolean;
 
-  constructor (
-    private figureService: FigureService
-  ) {}
+  private squareControl : FormControl;
 
   ngOnInit() {
     this.squareControl = new FormControl(10, [this.lengthValidator]);
   }
 
   private addSquare(): void {  
-    this.responseIsSuccess = true;
     const area = this.getSquareArea();
 
-    this.figureService.addFigure(
-    {
-      type: APP.types.square, 
-      area
+    this.addFigureEvent.emit({
+      type: 'Square',
+      area: area
     })
-      .subscribe( response => {
-        if(response.success){
-          this.responseIsSuccess = false;
-          this.showAlertMessage = true;
-          this.alertMessage = `Square #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
-        }
-      });
   }
 
   public getSquareArea(): number {

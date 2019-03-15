@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { FigureService } from '../services/figure.service';
-import { APP } from '../application-constants';
+import { Figure } from '../models/figure';
 
 @Component({
   selector: 'app-rectangle',
@@ -12,15 +11,11 @@ import { APP } from '../application-constants';
 
 export class RectangleComponent{
   
+  @Output() addFigureEvent = new EventEmitter<Figure>();
+  @Input() responseIsSuccess: boolean;
+
   private rectangleControl : FormGroup;
-  public responseIsSuccess: boolean = false; 
-  public showAlertMessage: boolean = false;
-  public alertMessage: string;
-
-  constructor (
-    private figureService: FigureService
-  ) {}
-
+  
   ngOnInit() {
     this.rectangleControl = new FormGroup({
       X1: new FormControl(10, [Validators.required]),
@@ -32,22 +27,12 @@ export class RectangleComponent{
 
 
   private addRectangle(): void {
-    
-    this.responseIsSuccess = true;
     const area = this.getRectangleArea();
 
-    this.figureService.addFigure(
-    {
-      type: APP.types.rectangle, 
-      area
+    this.addFigureEvent.emit({
+      type: 'Rectangle',
+      area: area
     })
-      .subscribe( response => {
-        if(response.success){
-          this.responseIsSuccess = false;
-          this.showAlertMessage = true;
-          this.alertMessage = `Rectangle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
-        }
-      });
   }
 
   public getRectangleArea(): number {

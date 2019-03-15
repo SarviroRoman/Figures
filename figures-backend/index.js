@@ -67,7 +67,7 @@ app.post('/figures', (request, response) => {
   });
 
   setTimeout( () =>{
-    response.send({success: true, 'id': newId});
+    response.send({success: true, id: newId});
   }, 500);
 
 });

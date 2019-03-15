@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl} from '@angular/forms';
 
-import { FigureService } from '../services/figure.service';
-import { APP } from '../application-constants';
+import { Figure } from '../models/figure';
 
 @Component ({
   selector: 'app-circle',
@@ -12,42 +11,26 @@ import { APP } from '../application-constants';
 
 export class CircleComponent{
 
-  private circleControl: FormControl;
-  public responseIsSuccess: boolean = false; 
-  public showAlertMessage: boolean = false;
-  public alertMessage: string;
+  @Output() addFigureEvent = new EventEmitter<Figure>();
+  @Input() responseIsSuccess: boolean;
 
-  constructor (
-    private figureService: FigureService
-  ) {}
+  private circleControl: FormControl;
 
   ngOnInit() {
     this.circleControl = new FormControl(10, [this.radiusValidator]);
   }
   
-
   private getCircleArea(): number {
     return Math.pow(this.circleControl.value,2) * Math.PI;
   }
   
-
   public addCircle(): void {
-    this.responseIsSuccess = true;
     const area = this.getCircleArea();
 
-    this.figureService.addFigure(
-    {
-      type: APP.types.circle, 
-      area
-    })
-      .subscribe( response => {
-        if(response.success){
-          this.responseIsSuccess = false;
-          this.showAlertMessage = true;
-          this.alertMessage = `Circle #${response['id']} with ${Math.round(area * 1000) / 1000} area successfully added`;
-        }
-      });
-    
+    this.addFigureEvent.emit({
+      type: 'Circle',
+      area: area
+    })    
   }
 
   private radiusValidator(circleControl: FormControl){

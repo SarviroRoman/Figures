@@ -48,6 +48,6 @@
 
 </form>
 
-<ngb-alert *ngIf='showAlertMessage' type='info' (close)="showAlertMessage = false" class="container alertDeleteSuccess text-center">
-    {{ alertMessage }}
+<ngb-alert *ngIf='triangleControl.invalid' [dismissible]="false" type='danger' class="container text-center">
+  {{triangleControl.errors.triangleValidator.message}}
 </ngb-alert>
